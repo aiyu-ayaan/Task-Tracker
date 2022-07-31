@@ -17,7 +17,6 @@ import com.atech.tasktracker.R
 import com.atech.tasktracker.database.model.Task
 import com.atech.tasktracker.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
@@ -42,7 +41,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 layoutManager = LinearLayoutManager(context)
             }
         }
-        lifecycleScope.launch {
+        lifecycleScope.launchWhenCreated {
             viewModel.tasks.collect {
                 if (it.isEmpty())
                     binding.apply {
