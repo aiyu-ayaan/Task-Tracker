@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Task Tracker</string>
+    <string name="home">Home</string>
+    <string name="add">Add</string>
+    <string name="remove">Remove</string>
+    <string name="delete">Delete</string>
+    <string name="task_text_completed">%s / %s</string>
+    <string name="task_name">Task Name</string>
+    <string name="initial_progress">Initial Progress</string>
+    <string name="final_task">Final Progress</string>
+    <string name="add_task">Add Task</string>
+    <string name="empty">Empty</string>
+    <string name="remove_all">Remove All</string>
+    <string name="add_des">Press add button to add your task !!</string>
+</resources>

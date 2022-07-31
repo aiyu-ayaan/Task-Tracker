@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="MainColor">#1a1c19</color>
+    <color name="accent_color">#a0d490</color>
+
+    <color name="scrim_color">#2d3229</color>
+</resources>
