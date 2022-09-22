@@ -21,20 +21,25 @@ android {
 
     signingConfigs {
         release {
-            def keystoreFile = file("keystore/keystore.jks")
-            // get keystore.properties and set it to keystoreProperties
-            def keystoreProperties = new Properties()
-            keystoreProperties.load(new FileInputStream(file("../keystore.properties")))
-            // set keystore properties
-            storeFile keystoreFile
-            storePassword keystoreProperties['SIGNING_STORE_PASSWORD']
-            keyAlias keystoreProperties['SIGNING_KEY_ALIAS']
-            keyPassword keystoreProperties['SIGNING_KEY_PASSWORD']
-//            Print all value
+//            def keystoreFile = file("keystore/keystore.jks")
+//            // get keystore.properties and set it to keystoreProperties
+//            def keystoreProperties = new Properties()
+//            keystoreProperties.load(new FileInputStream(file("../keystore.properties")))
+//            // set keystore properties
+//            storeFile keystoreFile
+//            storePassword keystoreProperties['SIGNING_STORE_PASSWORD']
+//            keyAlias keystoreProperties['SIGNING_KEY_ALIAS']
+//            keyPassword keystoreProperties['SIGNING_KEY_PASSWORD']
+////            Print all value
+//            println("storeFile: " + storeFile)
+//            println("storePassword: " + storePassword)
+//            println("keyAlias: " + keyAlias)
+            // get absolute path of keystore file
+            storeFile = file("../keystore/keystore.jks")
             println("storeFile: " + storeFile)
-            println("storePassword: " + storePassword)
-            println("keyAlias: " + keyAlias)
-
+            storePassword System.getenv("SIGNING_STORE_PASSWORD")
+            keyAlias System.getenv("SIGNING_KEY_ALIAS")
+            keyPassword System.getenv("SIGNING_KEY_PASSWORD")
         }
     }
     buildTypes {
