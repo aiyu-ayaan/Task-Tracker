@@ -1,3 +1,6 @@
+import java.nio.file.Files
+import java.nio.file.Paths
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
@@ -22,8 +25,12 @@ android {
 
     signingConfigs {
         release {
-            def tmpFilePath = "${System.getProperty("user.home")}/work/_temp/keystore/"
-
+            // get absolute root path
+            def rootPath = rootProject.projectDir.absolutePath
+            def tmpFilePath = rootPath + "/keystore/keystore"
+//            new String(Base64.getEncoder().encode(Files.readAllBytes(Paths.get("${tmpFilePath}.jks")))).withReader { reader ->
+//                storeFile file(reader)
+//            }
             def allFilesFromDir = new File(tmpFilePath).listFiles()
 
             if (allFilesFromDir != null) {
