@@ -15,11 +15,14 @@ jobs:
         with:
           fileName: 'keystore/keystore.jks'
           encodedString: ${{ secrets.KEYSTORE }}
-      - uses: actions/checkout@v2
-      - name: set up JDK 1.8
-        uses: actions/setup-java@v1
+      - uses: actions/checkout@v3
+      - name: set up JDK 11
+        uses: actions/setup-java@v3
         with:
-          java-version: 1.8
+           java-version: '11'
+           distribution: 'temurin'
+           cache: gradle
+           
       - name: Make gradlew executable
         run: chmod +x ./gradlew
       - name: build prod
@@ -29,7 +32,7 @@ jobs:
           SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
           SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
       - name: Upload
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3.1.0
         with:
           name: Build Artifacts
           path: app/build/outputs/
