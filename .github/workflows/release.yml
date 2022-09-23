@@ -31,8 +31,8 @@ jobs:
           SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
           SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
           SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
-      - name: Upload
+      - name: Upload release bundle
         uses: actions/upload-artifact@v3.1.0
         with:
-          name: Build Artifacts
+          name: app-release
           path:  app/build/outputs/release/app-release.apk
