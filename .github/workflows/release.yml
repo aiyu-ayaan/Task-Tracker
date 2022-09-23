@@ -35,4 +35,4 @@ jobs:
         uses: actions/upload-artifact@v3.1.0
         with:
           name: app-release
-          path:  app/build/outputs/bundle/release/internalBeta/
+          path:  app/build/outputs/bundle
