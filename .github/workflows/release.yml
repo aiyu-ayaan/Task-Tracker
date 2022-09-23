@@ -35,5 +35,5 @@ jobs:
         uses: actions/upload-artifact@v3.1.0
         with:
           name: app-release
-          path: app/build/bundle/internalBeta/release/app-internalBeta-release.aab
+          path: app/build/bundle
           if-no-files-found: error
