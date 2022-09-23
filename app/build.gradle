@@ -1,3 +1,6 @@
+import java.nio.file.Files
+import java.nio.file.Paths
+
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
@@ -34,12 +37,14 @@ android {
 //            println("storeFile: " + storeFile)
 //            println("storePassword: " + storePassword)
 //            println("keyAlias: " + keyAlias)
-            // get absolute path of keystore file
-            storeFile = file("../keystore/keystore.jks")
-            println("storeFile: " + storeFile)
+            // get absolute path
+            def keystoreFile = file("keystore/keystore.jks")
+            var c = new String(Base64.getEncoder().encode(Files.readAllBytes(Paths.get(keystoreFile.getAbsolutePath()))))
+            storeFile = file("keystore/keystore.jks")
             storePassword System.getenv("SIGNING_STORE_PASSWORD")
             keyAlias System.getenv("SIGNING_KEY_ALIAS")
             keyPassword System.getenv("SIGNING_KEY_PASSWORD")
+            println("storeFile: " + storePassword)
         }
     }
     buildTypes {
