@@ -35,5 +35,5 @@ jobs:
         uses: actions/upload-artifact@v3.1.0
         with:
           name: app-release
-          path:  app/build
+          path: ${{steps.sign_app.outputs.signedReleaseFile}}
           if-no-files-found: error
