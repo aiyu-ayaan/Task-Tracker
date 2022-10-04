@@ -35,5 +35,5 @@ jobs:
         uses: actions/upload-artifact@v3.1.0
         with:
           name: app-release
-          path: build/outputs/apk/internalBeta/release/*.apk
+          path:  app/build/outputs/apk/internalBeta/release/*apk
           if-no-files-found: error
