@@ -27,19 +27,14 @@ jobs:
         run: chmod +x ./gradlew
       - name: build prod
         run: ./gradlew assembleInternalBetaRelease
-      - name: Sign APK
-        id: sign_apk
-        uses: r0adkll/sign-android-release@v1
+      - name: build prod
+        run: ./gradlew app:bundleRelease
+        env:
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+      - name: Upload
+        uses: actions/upload-artifact@v2
         with:
-          releaseDirectory: app/build/outputs/bundle/internalBeta/release
-          signingKeyBase64: ${{ secrets.KEYSTORE }}
-          alias: ${{secrets.SIGNING_KEY_ALIAS }}
-          keyStorePassword: ${{ secrets.SIGNING_STORE_PASSWORD }}
-          keyPassword: ${{  secrets.SIGNING_KEY_PASSWORD }}
-          
-      - name: Upload release Apk
-        uses: actions/upload-artifact@v3.1.0
-        with:
-          name: app-release
-          path: ${{steps.sign_app.outputs.signedReleaseFile}}
-          if-no-files-found: error
+          name: Build Artifacts
+          path: app/build/outputs/apk/internalBeta/release
