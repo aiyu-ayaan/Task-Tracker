@@ -38,4 +38,4 @@ jobs:
         with:
           name: Build Artifacts
           if-no-files-found: error
-          path: app/build/outputs/bundle/internalBetaRelease
+          path: app/build/outputs
