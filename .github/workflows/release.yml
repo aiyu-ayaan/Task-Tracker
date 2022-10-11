@@ -2,9 +2,9 @@ name: Build Release App Bundle
 
 on: 
  push:
-    branches: [ "master" ]
+    branches: [ "nimlay" ]
  pull_request:
-    branches: [ "master" ]
+    branches: [ "nimlay" ]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -25,16 +25,17 @@ jobs:
            
       - name: Make gradlew executable
         run: chmod +x ./gradlew
+        
       - name: build prod
-        run: ./gradlew assembleInternalBetaRelease
-      - name: build prod
-        run: ./gradlew app:bundleRelease
+        run: ./gradlew :app:bundleInternalBetaRelease
         env:
           SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
           SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
           SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+          
       - name: Upload
         uses: actions/upload-artifact@v2
         with:
           name: Build Artifacts
-          path: app/build/outputs/apk/internalBeta/release
+          if-no-files-found: error
+          path: app/build/outputs
