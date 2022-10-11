@@ -26,7 +26,7 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
       - name: build prod
-        run: ./gradlew assembleInternalBetaRelease
+        run: ./gradlew :app:assembleInternalBetaRelease
       - name: Sign APK
         id: sign_apk
         uses: r0adkll/sign-android-release@v1
